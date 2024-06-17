@@ -32,11 +32,6 @@ jobs:
       - run: pod install
         working-directory: ios
 
-      - name: Update minimum iOS version in Xcode project
-        run: |
-          cd ios
-          /usr/libexec/PlistBuddy -c "Set :IPHONEOS_DEPLOYMENT_TARGET 13.0" Runner/Info.plist
-          xcodebuild -project Runner.xcodeproj -target Runner -configuration Release IPHONEOS_DEPLOYMENT_TARGET=13.0
 
       - run: flutter build ios --release --no-codesign
 
