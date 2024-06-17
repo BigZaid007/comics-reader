@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "348132926457",
+    "project_id": "epic-a1e45",
+    "storage_bucket": "epic-a1e45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348132926457:android:2ffd27432ae5cd9400d328",
+        "android_client_info": {
+          "package_name": "com.example.epic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv69T1VYnQYpEP0cL-ttubE6ii0TJLtKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
