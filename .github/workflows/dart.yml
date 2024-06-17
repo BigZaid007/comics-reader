@@ -2,10 +2,8 @@ name: iOS-IPA-Build
 
 on:
   workflow_dispatch:
-
 permissions:
-  contents: write
-
+  contents: write 
 jobs:
   build-ios:
     name: 🎉 iOS Build
@@ -17,19 +15,12 @@ jobs:
         with:
           channel: 'stable'
           architecture: x64
-
       - run: flutter pub get
+      
 
-      - run: pod repo update
+      - run: pod install --repo-update
         working-directory: ios
-
-      # Add this step to update the minimum iOS version
-      - name: Update minimum iOS version
-        run: |
-          cd ios
-          /usr/libexec/PlistBuddy -c "Set :IPHONEOS_DEPLOYMENT_TARGET 13.0" Runner/Info.plist
-          xcodebuild -project Runner.xcodeproj -target Runner -configuration Release IPHONEOS_DEPLOYMENT_TARGET=13.0
-
+      
       - run: flutter build ios --release --no-codesign
 
       - run: mkdir Payload
