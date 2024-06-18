@@ -40,6 +40,7 @@ dependencies:
   riverpod:
   flutter_riverpod:
   carousel_slider:
+  cached_network_image:
   
 
 dev_dependencies:

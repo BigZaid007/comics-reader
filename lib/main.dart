@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      home: homeScreen(app: app,),
+      home: HomeScreen(app: app,),
     );
   }
 }
