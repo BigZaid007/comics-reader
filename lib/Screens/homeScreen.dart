@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:epic/Widgets/customAppBar.dart';
+import 'package:epic/Widgets/gridView.dart';
 import 'package:epic/logic/homeController.dart';
 import 'package:epic/models/comics.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -157,75 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           comics.add(comic);
                         });
                         
-                        return GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.65,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                          ),
-                          itemCount: comics.length,
-                          itemBuilder: (context, index) {
-                            final comic = comics[index];
-                            return Card(
-                              elevation: 6,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              shadowColor: Colors.black45,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Expanded(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.vertical(
-                                          top: Radius.circular(15)),
-                                      child: CachedNetworkImage(
-                                        imageUrl: comic.image!,
-                                        fit: BoxFit.cover,
-                                        placeholder: (context, url) =>
-                                            CircularProgressIndicator(
-                                          strokeWidth: 1,
-                                          color: Colors.black,
-                                        ),
-                                        errorWidget:
-                                            (context, url, error) =>
-                                                Icon(Icons.error),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 5.0),
-                                    child: Text(
-                                      comic.category ?? 'General',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontStyle: FontStyle.italic,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      comic.name!,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        );
+                        return comicsGrid(comics);
                       }
                     },
                   ),
