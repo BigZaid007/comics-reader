@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -29,8 +30,8 @@ class _ComicReaderState extends State<ComicReader> {
                   itemBuilder: (context, count) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Image.network(
-                        widget.links[count],
+                      child: CachedNetworkImage(
+                        imageUrl: widget.links[count],
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height,
                       ),

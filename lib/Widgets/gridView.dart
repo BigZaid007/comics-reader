@@ -1,3 +1,13 @@
+import 'dart:math';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:epic/Screens/ChaptersScreen.dart';
+import 'package:epic/models/comics.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:epic/Screens/ChaptersScreen.dart';
 import 'package:epic/models/comics.dart';
@@ -7,7 +17,7 @@ import 'package:get/get.dart';
 
 Widget comicsGrid(List<Comic> comics) {
   return GridView.builder(
-    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
       childAspectRatio: 0.65,
       crossAxisSpacing: 10,
@@ -102,4 +112,56 @@ showNoChapters(BuildContext context) {
           ],
         );
       });
+}
+
+Widget comicsGridHome(List<Comic> comics) {
+  // Shuffle the comics list to display items in random order
+  comics.shuffle(Random());
+
+  return StaggeredGridView.countBuilder(
+    crossAxisCount: 2,
+    itemCount: comics.length,
+    itemBuilder: (context, index) {
+      final comic = comics[index];
+      return GestureDetector(
+        onTap: () {
+          comic.chapterts != null
+              ? Get.to(() => ChaptersScreen(
+                    chapters: comic.chapterts!,
+                    comicTitle: comic.name!,
+                  ))
+              : showNoChapters(context);
+        },
+        child: Card(
+          elevation: 8,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          shadowColor: Colors.black38,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: CachedNetworkImage(
+              imageUrl: comic.image!,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => Center(
+                child: Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: Container(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              errorWidget: (context, url, error) =>
+                  Icon(Icons.error, color: Colors.red),
+            ),
+          ),
+        ),
+      );
+    },
+    staggeredTileBuilder: (int index) => StaggeredTile.fit(1),
+    mainAxisSpacing: 10.0,
+    crossAxisSpacing: 10.0,
+    padding: EdgeInsets.all(10),
+  );
 }

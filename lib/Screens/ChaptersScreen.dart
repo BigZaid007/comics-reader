@@ -54,7 +54,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                       return SizedBox(
                         height: MediaQuery.of(context).size.height,
                         child: ListView.builder(
-                            itemCount: snapshot.data!.length - 1,
+                            itemCount: snapshot.data!.length,
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 onTap: () {

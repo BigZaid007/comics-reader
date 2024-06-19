@@ -1,4 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:get/get.dart';
 
 Future<List<String>> getBanners(DatabaseReference? bannerRF) async {
   if (bannerRF == null) {
@@ -26,7 +27,6 @@ Future<List<String>> getBanners(DatabaseReference? bannerRF) async {
   }
 }
 
-
 Future<dynamic> getComic(DatabaseReference? comics) async {
   if (comics == null) {
     return null;
@@ -41,4 +41,13 @@ Future<dynamic> getComic(DatabaseReference? comics) async {
     print("Error fetching comics: $e");
     return null;
   }
+}
+
+class bottomBarController extends GetxController {
+  var currentIndex = 0.obs;
+
+  // changeScreen(index) {
+  //   currentIndex = index;
+  //   print(currentIndex);
+  // }
 }
