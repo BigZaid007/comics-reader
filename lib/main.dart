@@ -17,7 +17,7 @@ void main() async {
       options: Platform.isIOS || Platform.isMacOS
           ? FirebaseOptions(
               apiKey: "AIzaSyAv69T1VYnQYpEP0cL-ttubE6ii0TJLtKY",
-              appId: "IOS Key",
+              appId: "1:348132926457:ios:95f0794d5f2c9ac500d328",
               messagingSenderId: '348132926457',
               projectId: "epic-a1e45")
           : FirebaseOptions(
