@@ -44,11 +44,19 @@ dependencies:
   get:
   shimmer:
   flutter_staggered_grid_view: ^0.4.0
+  flutter_launcher_icons:
+  google_fonts:
+  flutter_screenutil:
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/appicon.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

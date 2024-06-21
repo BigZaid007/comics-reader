@@ -4,16 +4,120 @@ import 'package:epic/Screens/ChaptersScreen.dart';
 import 'package:epic/models/comics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:epic/Screens/ChaptersScreen.dart';
-import 'package:epic/models/comics.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+Widget homeGrid(List<Comic> comics) {
+  return ListView.builder(
+    shrinkWrap: true,
+    physics: NeverScrollableScrollPhysics(),
+    itemCount: (comics.length / 2).ceil(),
+    itemBuilder: (context, index) {
+      final int firstIndex = index * 2;
+      final int secondIndex = firstIndex + 1;
+
+      return Row(
+        children: [
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                comics[firstIndex].chapterts != null
+                    ? Get.to(() => ChaptersScreen(
+                          chapters: comics[firstIndex].chapterts!,
+                          comicTitle: comics[firstIndex].name!,
+                        ))
+                    : showNoChapters(context);
+              },
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 2.0, vertical: 3.0)
+                        .r,
+                child: Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20).r,
+                  ),
+                  shadowColor: Colors.black54,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20).r,
+                    child: CachedNetworkImage(
+                      width: 300.w,
+                      height: 300.h,
+                      imageUrl: comics[firstIndex].image!,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) => Center(
+                        child: Shimmer.fromColors(
+                          baseColor: Colors.grey[300]!,
+                          highlightColor: Colors.grey[100]!,
+                          child: Container(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      errorWidget: (context, url, error) =>
+                          Icon(Icons.error, color: Colors.red),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          if (secondIndex < comics.length)
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  comics[secondIndex].chapterts != null
+                      ? Get.to(() => ChaptersScreen(
+                            chapters: comics[secondIndex].chapterts!,
+                            comicTitle: comics[secondIndex].name!,
+                          ))
+                      : showNoChapters(context);
+                },
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 2.0, vertical: 3.0)
+                          .r,
+                  child: Card(
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20).r,
+                    ),
+                    shadowColor: Colors.black54,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20).r,
+                      child: CachedNetworkImage(
+                        width: 300.w,
+                        height: 300.h,
+                        imageUrl: comics[secondIndex].image!,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => Center(
+                          child: Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: Container(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            Icon(Icons.error, color: Colors.red),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          else
+            Expanded(
+              child: Container(), // Empty container to balance the row
+            ),
+        ],
+      );
+    },
+  );
+}
 
 Widget comicsGrid(List<Comic> comics) {
   return GridView.builder(
@@ -119,7 +223,7 @@ Widget comicsGridHome(List<Comic> comics) {
   comics.shuffle(Random());
 
   return StaggeredGridView.countBuilder(
-    crossAxisCount: 2,
+    crossAxisCount: 1,
     itemCount: comics.length,
     itemBuilder: (context, index) {
       final comic = comics[index];

@@ -32,6 +32,7 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Obx(() => BottomNavigationBar(
+            backgroundColor: Color.fromARGB(255, 23, 15, 40),
             onTap: (index) {
               controller.currentIndex.value = index;
               print(controller.currentIndex);

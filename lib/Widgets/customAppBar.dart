@@ -1,27 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-AppBar customAppBar(String title , double fontSize)
-{
+AppBar customAppBar(String title, double fontSize) {
   return AppBar(
-        title: Text(
-          title,
-          style: TextStyle(
-            fontFamily: 'RobotoSlab',
-            fontWeight: FontWeight.bold,
-            fontSize: fontSize,
-            color: Colors.white
+    iconTheme: IconThemeData(color: Colors.white),
+    actions: [
+      Padding(
+        padding: const EdgeInsets.only(right: 5).r,
+        child: Container(
+          width: 40.0.r, // Set the width and height to your desired size
+          height: 40.0.r,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Image.asset(
+            "assets/images/appicon.png",
+            fit: BoxFit.cover, // Ensures the image covers the container
           ),
         ),
-        centerTitle: true,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color.fromARGB(255, 157, 130, 203), Color.fromARGB(255, 185, 102, 76)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
-      
-      );
+      ),
+    ],
+    title: Text(
+      title,
+      style: GoogleFonts.pacifico(
+          fontWeight: FontWeight.bold, fontSize: fontSize, color: Colors.white),
+    ),
+    centerTitle: true,
+    flexibleSpace: Container(
+      decoration: BoxDecoration(
+        color: Color.fromARGB(255, 23, 15, 40),
+      ),
+    ),
+  );
 }
