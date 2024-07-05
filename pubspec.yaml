@@ -47,16 +47,31 @@ dependencies:
   flutter_launcher_icons:
   google_fonts:
   flutter_screenutil:
+  flutter_native_splash:
+  preload_page_view:
+  photo_view:
+  dio: 
+  path_provider:
+  archive: 
+  open_file:
+  permission_handler:
+
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_native_splash:
+  color: "#e22c07"
+  image: assets/images/splash-big.jpg
+  android: true
+  ios: true    
+
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/appicon.png"
+  image_path: "assets/images/intro.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

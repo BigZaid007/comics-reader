@@ -3,7 +3,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:epic/Screens/ChaptersScreen.dart';
 import 'package:epic/Screens/DCScreen.dart';
 import 'package:epic/Screens/MarvelScreen.dart';
+import 'package:epic/Widgets/charectarCircle.dart';
 import 'package:epic/Widgets/gridView.dart';
+import 'package:epic/helpers/heroDescription.dart';
 import 'package:epic/logic/homeController.dart';
 import 'package:epic/models/comics.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -54,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             Container(
-              height: 200.h,
+              height: 150.h,
               decoration: BoxDecoration(
                   color: Color.fromARGB(255, 23, 15, 40),
                   borderRadius: BorderRadius.only(
@@ -63,24 +65,77 @@ class _HomeScreenState extends State<HomeScreen> {
                   )),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 25).r,
+                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 25)
+                        .r,
                 child: Text(
                   'Dive into your favorite comics and embark on new adventures!',
                   textAlign: TextAlign.left,
-                  style: GoogleFonts.playfairDisplay(
-                    fontSize: 24.sp,
+                  style: GoogleFonts.robotoMono(
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
               ),
             ),
+            SizedBox(
+              height: 10.h,
+            ),
             Align(
               alignment: AlignmentDirectional.topStart,
               child: Padding(
                 padding: const EdgeInsets.only(left: 12.0, top: 5, bottom: 5).r,
                 child: Text(
-                  'Vintage Superheros',
+                  'Your Favirote Icons',
+                  style: GoogleFonts.josefinSans(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 115.h,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10).r,
+                child: ListView(
+                  physics: ScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    charCircle(
+                        'SpiderMan',
+                        const Color.fromARGB(255, 212, 81, 72),
+                        spiderman,
+                        widget.app),
+                    charCircle('Batman', const Color.fromARGB(255, 43, 50, 90),
+                        batman, widget.app),
+                    charCircle('DBZ', Color.fromARGB(255, 218, 123, 54),
+                        dragonBallSuper, widget.app),
+                    charCircle('Superman', Color.fromARGB(255, 59, 110, 231),
+                        superman, widget.app),
+                    charCircle(
+                        'HunterXHunter',
+                        Color.fromARGB(255, 151, 204, 164),
+                        hunterXHunter,
+                        widget.app),
+                    charCircle('Ironman', Color.fromARGB(255, 213, 59, 31),
+                        ironman, widget.app),
+                    charCircle('Boruto', Color.fromARGB(255, 175, 58, 168),
+                        boruto, widget.app),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 5.h,
+            ),
+            Align(
+              alignment: AlignmentDirectional.topStart,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 12.0, top: 5, bottom: 5).r,
+                child: Text(
+                  'Superheros Universe',
                   style: GoogleFonts.josefinSans(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
@@ -131,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 12.0, top: 5, bottom: 5).r,
                 child: Text(
-                  'Recommended',
+                  'Features',
                   style: GoogleFonts.josefinSans(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,

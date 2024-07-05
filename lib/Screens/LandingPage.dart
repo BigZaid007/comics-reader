@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:epic/Screens/DownloadsFile.dart';
 import 'package:epic/Screens/comicScreen.dart';
 import 'package:epic/Screens/homeScreen.dart';
 import 'package:epic/Screens/mangaScreen.dart';
+import 'package:epic/Widgets/bottomBar.dart';
 import 'package:epic/Widgets/customAppBar.dart';
 import 'package:epic/Widgets/gridView.dart';
 import 'package:epic/logic/homeController.dart';
@@ -14,6 +16,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class LandingPage extends StatefulWidget {
@@ -31,45 +34,10 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Obx(() => BottomNavigationBar(
-            backgroundColor: Color.fromARGB(255, 23, 15, 40),
-            onTap: (index) {
-              controller.currentIndex.value = index;
-              print(controller.currentIndex);
-            },
-            currentIndex: controller.currentIndex.value,
-            unselectedItemColor: Colors.grey,
-            selectedItemColor: Colors.blue,
-            items: [
-              BottomNavigationBarItem(
-                label: 'Home',
-                icon: Icon(Icons.home),
-              ),
-              BottomNavigationBarItem(
-                label: 'Manga',
-                icon: Image.asset(
-                  'assets/images/manga.png',
-                  color: controller.currentIndex.value == 1
-                      ? Colors.blue
-                      : Colors.grey,
-                  width: 20,
-                  height: 20,
-                ),
-              ),
-              BottomNavigationBarItem(
-                label: 'Comics',
-                icon: Image.asset(
-                  'assets/images/comic.png',
-                  color: controller.currentIndex.value == 2
-                      ? Colors.blue
-                      : Colors.grey,
-                  width: 20,
-                  height: 20,
-                ),
-              ),
-            ],
-          )),
-      appBar: customAppBar('Epic Comics', 22.0),
+      bottomNavigationBar: Obx(
+        () => bottomBar(controller),
+      ),
+      appBar: customAppBar('Geekz', 22.0.sp),
       body: Obx(
         () {
           if (controller.currentIndex.value == 0) {
@@ -78,10 +46,12 @@ class _LandingPageState extends State<LandingPage> {
             return mangaScreen(
               app: widget.app,
             );
-          } else {
+          } else if (controller.currentIndex.value == 2) {
             return comicScreen(
               app: widget.app,
             );
+          } else {
+            return DownloadsScreen();
           }
         },
       ),

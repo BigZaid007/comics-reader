@@ -16,7 +16,7 @@ AppBar customAppBar(String title, double fontSize) {
           ),
           clipBehavior: Clip.antiAlias,
           child: Image.asset(
-            "assets/images/appicon.png",
+            "assets/images/logo-app.png",
             fit: BoxFit.cover, // Ensures the image covers the container
           ),
         ),
@@ -24,8 +24,11 @@ AppBar customAppBar(String title, double fontSize) {
     ],
     title: Text(
       title,
-      style: GoogleFonts.pacifico(
-          fontWeight: FontWeight.bold, fontSize: fontSize, color: Colors.white),
+      style: GoogleFonts.robotoMono(
+          fontWeight: FontWeight.bold,
+          fontSize: fontSize,
+          color: Colors.white,
+          letterSpacing: 2),
     ),
     centerTitle: true,
     flexibleSpace: Container(
