@@ -55,6 +55,9 @@ dependencies:
   archive: 
   open_file:
   permission_handler:
+  google_mlkit_text_recognition:
+  translator:
+  video_player:
 
   
 
@@ -62,11 +65,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter_native_splash:
-  color: "#e22c07"
-  image: assets/images/splash-big.jpg
-  android: true
-  ios: true    
+
 
 flutter_launcher_icons:
   android: "launcher_icon"

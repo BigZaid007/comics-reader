@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 AppBar customAppBar(String title, double fontSize) {
   return AppBar(
     iconTheme: IconThemeData(color: Colors.white),
+    leading: Container(),
     actions: [
       Padding(
         padding: const EdgeInsets.only(right: 5).r,

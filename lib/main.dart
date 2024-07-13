@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:epic/Screens/LandingPage.dart';
+import 'package:epic/Screens/SplashScreen.dart';
 import 'package:epic/Screens/homeScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
         // Use builder only if you need to use library outside ScreenUtilInit context
         builder: (_, child) {
           return GetMaterialApp(
-              debugShowCheckedModeBanner: false, home: LandingPage(app: app));
+              debugShowCheckedModeBanner: false, home: SplashScreen(app: app));
         });
   }
 }
