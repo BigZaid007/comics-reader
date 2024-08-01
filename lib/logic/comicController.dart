@@ -85,14 +85,6 @@ class ComicReaderController extends GetxController {
             'You Can Enjoy Reading Offline!',
             style: GoogleFonts.lato(color: Colors.grey, fontSize: 13.sp),
           ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Get.to(() => DownloadsScreen());
-              },
-              child: Text('Go to Download Screen'),
-            ),
-          ],
         ),
       );
     } catch (e) {

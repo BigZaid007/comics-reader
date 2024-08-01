@@ -32,7 +32,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: bgColor,
-        appBar: customAppBar(widget.comicTitle, 20),
+        appBar: customAppBarChapter(widget.comicTitle, 20),
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

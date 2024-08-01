@@ -67,7 +67,6 @@ class TranslateImageController extends GetxController {
 
       // Log the text being translated
       print('Translating text: $text');
-
       final translation = await translator.translate(text, to: 'ar');
 
       // Log the translated text
